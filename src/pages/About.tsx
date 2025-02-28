@@ -8,7 +8,7 @@ interface FAQItem {
   answer: string;
 }
 
-// 2) مكون الأسئلة الشائعة
+// 2) مكون الأسئلة الشائعة المحسن للغة العربية
 function FAQ({ questions }: { questions: FAQItem[] }) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
@@ -17,37 +17,47 @@ function FAQ({ questions }: { questions: FAQItem[] }) {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       {questions.map((item: FAQItem, index: number) => (
         <div
           key={index}
-          className="bg-white rounded-lg shadow-md overflow-hidden"
+          className="bg-white rounded-lg shadow-md overflow-hidden border-r-4 border-green-600"
           data-aos="fade-up"
-          data-aos-duration="1000"
+          data-aos-duration="800"
         >
           <button
-            className="w-full text-right p-4 flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
+            className="w-full p-5 flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
             onClick={() => toggleQuestion(index)}
             aria-expanded={activeIndex === index}
             aria-controls={`faq-answer-${index}`}
           >
-            <span className="text-lg font-medium text-gray-800">{item.question}</span>
-            <i
-              className={`transition-transform duration-300 ${
-                activeIndex === index ? 'transform rotate-180' : ''
-              }`}
-              aria-hidden="true"
-            >
-              ▼
-            </i>
+            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-green-50 border border-green-200">
+              <svg 
+                className={`w-4 h-4 text-green-600 transition-transform duration-300 ${
+                  activeIndex === index ? 'transform rotate-180' : ''
+                }`} 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24" 
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={2} 
+                  d="M19 9l-7 7-7-7" 
+                />
+              </svg>
+            </div>
+            <span className="text-lg font-medium text-gray-800 text-right">{item.question}</span>
           </button>
           <div
             id={`faq-answer-${index}`}
-            className={`text-right p-4 bg-gray-50 transition-all duration-300 ${
-              activeIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 hidden'
+            className={`p-5 bg-gray-50 transition-all duration-300 border-t border-gray-100 ${
+              activeIndex === index ? 'block' : 'hidden'
             }`}
           >
-            <p className="text-gray-700 whitespace-pre-line">{item.answer}</p>
+            <p className="text-gray-700 whitespace-pre-line text-right pr-8">{item.answer}</p>
           </div>
         </div>
       ))}
@@ -134,14 +144,14 @@ function About() {
               <p className="text-gray-700 mb-6 leading-relaxed">
                 مواسم الخدمات هي شركة وطنية متخصصة في تقديم خدمات النظافة والحاويات والصيانة.
                 وتقدم لكم هذه الخدمات بمعايير عالية وعن طريق عمالة متخصصة في هذا المجال
-                لها خبرة واسعة خولتها لإظهار الإحترافية والدقة في نتائجها دائماً.
+                لها خبرة واسعة خولتها لإظهار الإحترافية والدقة في نتائجها دائماً
                 نحن في مواسم نسعى لأن نكون بين نخبة الشركات التي تهتم وتعتني بعملائها
-                لربط رضاهم بنجاحنا الدائم.
+                لربط رضاهم بنجاحنا الدائم
                 <br />
                 خدماتنا لا تقتصر على تنفيذ العمل فقط، بل نمتلك فريق متخصص للرد على استفساراتكم
-                ومتابعة ملاحظاتكم قبل وأثناء وبعد انتهاء العمل للحصول على أعلى درجات الرضا.
+                ومتابعة ملاحظاتكم قبل وأثناء وبعد انتهاء العمل للحصول على أعلى درجات الرضا
               </p>
-              <h5 className="text-xl font-bold text-gray-800">محمد عبداالله السلوم</h5>
+              <h5 className="text-xl font-bold text-gray-800">محمد عبد الله السلوم</h5>
               <span className="text-green-600">مدير عام</span>
             </div>
           </div>
@@ -160,15 +170,6 @@ function About() {
             <FAQ
               questions={[
                 {
-                  question: 'ما هي أحجام الحاويات التي توفرها الشركة؟',
-                  answer: '2 – 4 – 6 – 10 – 20 – 30 ياردة'
-                },
-                {
-                  question: 'ما هي أنواع الأنشطة بفرع نظافة المباني؟',
-                  answer:
-                    'تنظيف الواجهات الزجاجية للمباني\nتنظيف وتعقيم الفلل والقصور والمكاتب\nالجلي والتلميع الماسي للرخام\nتنظيف وجلي البلاط وتلميعه\nتنظيف وغسل المكيفات وصيانتها\nتنظيف وغسل الموكيت والسجاد بالبخار بالطرق الحديثة'
-                },
-                {
                   question: 'ما هي أسعار الخدمات؟',
                   answer: 'على حسب نوع الخدمة ومدتها'
                 },
@@ -176,22 +177,10 @@ function About() {
                   question: 'هل يوجد خصومات على أسعار الخدمات وما هي؟',
                   answer: 'في حالة التعاقد السنوي'
                 },
-                {
-                  question: 'ما أنواع الأنشطة المتعلقة بخدمة نظافة السيارات؟',
-                  answer:
-                    'غسل خارجي بالبخار للسيارة\nتلميع خارجي للسيارة\nتنظيف داخلي بالبخار للسيارة مع شفط الأوساخ\nتلميع داخلي للسيارة'
-                },
+              
                 {
                   question: 'ما هي ساعات العمل؟',
-                  answer: 'تلقي الطلبات من 8 صباحاً حتى 4 مساءً'
-                },
-                {
-                  question: 'ما هي أنواع الأنشطة بفرع إيجار الحاويات؟',
-                  answer: 'نقل النفايات - نقل مخلفات المباني – نقل الأنقاض – مخلفات المستشفيات'
-                },
-                {
-                  question: 'ما هي الجهات التي تتعامل معها الشركة؟',
-                  answer: 'الجهات الحكومية – المستشفيات – الأهالي'
+                  answer: 'تلقي الطلبات من 7 صباحاً حتى 3 مساءً'
                 }
               ]}
             />

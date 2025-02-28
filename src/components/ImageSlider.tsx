@@ -8,7 +8,6 @@ function ImageSlider({ images }: ImageSliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    // تم تعديل الوقت من 5000ms إلى 3000ms لتحريك الصور أسرع
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 3000);
@@ -30,11 +29,10 @@ function ImageSlider({ images }: ImageSliderProps) {
             alt={`Slide ${index + 1}`}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-40" />
+          <div className="absolute inset-0 bg-black bg-opacity-10" />
         </div>
       ))}
       
-      {/* مؤشرات الشرائح */}
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
         {images.map((_, index) => (
           <button

@@ -41,16 +41,17 @@ function ContactFooter() {
                 info@mawasims.com.sa
               </a>
               <a 
-                href="mailto:HR@mawasims.com.sa" 
+                href="mailto:MBadran@mawasims.com.sa" 
                 className="block mb-1 hover:text-green-600 transition-colors"
               >
-                HR@mawasims.com.sa
+                MBadran@mawasims.com.sa
               </a>
               <a 
-                href="mailto:MB@mawasims.com.sa" 
+                href="mailto:ZHesham@mawasims.com.sa" 
                 className="block hover:text-green-600 transition-colors"
               >
-                MB@mawasims.com.sa
+               ZHesham@mawasims.com.sa
+
               </a>
             </div>
           </div>
@@ -66,26 +67,21 @@ function ContactFooter() {
                 href="tel:+966507017988" 
                 className="block mb-1 hover:text-green-600 transition-colors"
               >
-                مكتب المبيعات: 0507017988
+                مدير الفرع: 0502532888
               </a>
               <a 
                 href="tel:+966505087077" 
                 className="block mb-1 hover:text-green-600 transition-colors"
               >
-                خدمة العملاء: 0505087077
+                خدمة العملاء: 0563995580
               </a>
               <a 
                 href="tel:+966554263333" 
                 className="block mb-1 hover:text-green-600 transition-colors"
               >
-                قسم خدمات الدعم: 0554263333
-              </a>
-              <a 
-                href="tel:+966505711688" 
-                className="block hover:text-green-600 transition-colors"
-              >
-                مدير مشاريع: 0505711688
-              </a>
+
+مدير إدارة المشاريع: 0505242177          
+    </a>
             </div>
           </div>
         </div>
@@ -101,7 +97,7 @@ function ContactFooter() {
         
         {/* Copyright Section */}
         <div className="mt-8 text-center">
-          <p className="text-gray-600">© {new Date().getFullYear()} مواسم للخدمات. جميع الحقوق محفوظة.</p>
+          <p className="text-gray-600">© {new Date().getFullYear()} مواسم الخدمات. جميع الحقوق محفوظة</p>
         </div>
       </div>
     </div>

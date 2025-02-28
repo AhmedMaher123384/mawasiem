@@ -231,10 +231,10 @@ const services = [
     ],
   },
 ];
-
 function ServiceDetail() {
   const { id } = useParams();
   const service = services.find((s) => s.id === parseInt(id || '0'));
+  const [selectedImage, setSelectedImage] = React.useState(null);
 
   // استخدام useEffect للتمرير إلى أعلى الصفحة عند تحميلها
   useEffect(() => {
@@ -252,28 +252,26 @@ function ServiceDetail() {
     );
   }
 
+  const openImageModal = (image) => {
+    setSelectedImage(image);
+  };
+
+  const closeImageModal = () => {
+    setSelectedImage(null);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 rtl">
       {/* Hero Header with Parallax Effect */}
       <div className="w-full h-96 bg-gradient-to-r from-green-800 to-green-600 relative overflow-hidden rounded-b-3xl shadow-xl">
-        <div className="absolute inset-0 bg-pattern opacity-15"></div>
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `url(${service.image})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            opacity: 0.2,
-          }}
-        ></div>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center px-4">
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">{service.title}</h1>
-            <div className="w-32 h-1 bg-white mx-auto rounded-full"></div>
-            <p className="text-white text-xl mt-6 max-w-2xl mx-auto font-light">{service.description}</p>
-          </div>
-        </div>
-      </div>
+  <div className="absolute inset-0 flex items-center justify-center">
+    <div className="text-center px-4">
+      <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">{service.title}</h1>
+      <div className="w-32 h-1 bg-white mx-auto rounded-full"></div>
+      <p className="text-white text-xl mt-6 max-w-2xl mx-auto font-light">{service.description}</p>
+    </div>
+  </div>
+</div>
 
       {/* Content Container */}
       <div className="container mx-auto px-4 lg:px-8 py-16 -mt-20">
@@ -286,7 +284,7 @@ function ServiceDetail() {
             </p>
           </div>
 
-          {/* Sub Services Grid */}
+          {/* Improved Sub Services Section with full-width images */}
           {service.subTitles && service.subTitles.length > 0 && (
             <div className="mb-14 animate-fade-in-up" style={{ animationDelay: '0.2s' }} dir="rtl">
               <div className="flex items-center mb-8">
@@ -295,25 +293,23 @@ function ServiceDetail() {
                 </h3>
                 <div className="flex-grow border-b border-gray-200 mr-4"></div>
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" dir="rtl">
+              
+              <div className="space-y-8" dir="rtl">
                 {service.subTitles.map((subService, index) => (
                   <div
                     key={index}
-                    className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100"
+                    className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
                   >
-                    <div className="h-32 sm:h-40 overflow-hidden relative">
+                    <div className="overflow-hidden relative" onClick={() => openImageModal(subService.image)}>
                       <img
                         src={subService.image}
                         alt={subService.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="w-full h-72 md:h-96 object-cover object-center transition-transform duration-500 hover:scale-105 cursor-pointer"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-70 transition-opacity duration-300"></div>
-                    </div>
-                    <div className="p-3 sm:p-4">
-                      <h4 className="text-sm font-bold text-gray-800 group-hover:text-green-600 transition-colors duration-300 text-right">
-                        {subService.title}
-                      </h4>
+                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent opacity-70 py-4 px-6">
+                        <h4 className="text-xl font-bold text-white">{subService.title}</h4>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -321,7 +317,7 @@ function ServiceDetail() {
             </div>
           )}
 
-          {/* Advantages Section */}
+          {/* Improved Advantages Section */}
           {service.advantages && service.advantages.length > 0 && (
             <div className="mb-14 animate-fade-in-up" style={{ animationDelay: '0.4s' }} dir="rtl">
               <div className="flex items-center mb-8">
@@ -330,13 +326,14 @@ function ServiceDetail() {
                 </h3>
                 <div className="flex-grow border-b border-gray-200 mr-4"></div>
               </div>
+              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {service.advantages.map((advantage, index) => (
-                  <div key={index} className="flex items-start space-x-4 space-x-reverse bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
-                    <span className="flex-shrink-0 w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                  <div key={index} className="flex items-start space-x-4 space-x-reverse bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-green-200">
+                    <span className="flex-shrink-0 w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="w-5 h-5"
+                        className="w-6 h-6"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -345,16 +342,16 @@ function ServiceDetail() {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                     </span>
-                    <p className="text-gray-700 font-medium">{advantage}</p>
+                    <p className="text-gray-700 font-medium text-lg">{advantage}</p>
                   </div>
                 ))}
               </div>
             </div>
           )}
 
-          {/* CTA Section */}
+          {/* Improved CTA Section */}
           <div className="mt-10 text-center">
-            <div className="bg-gradient-to-r from-green-50 to-gray-50 p-8 rounded-2xl border border-green-100">
+            <div className="bg-gradient-to-r from-green-50 to-gray-50 p-8 rounded-2xl border border-green-100 shadow-inner">
               <h3 className="text-2xl font-bold text-gray-800 mb-4">هل تريد الاستفادة من خدماتنا؟</h3>
               <p className="text-gray-600 mb-6">تواصل معنا اليوم للحصول على أفضل خدمة</p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -366,7 +363,7 @@ function ServiceDetail() {
                 </Link>
                 <Link 
                   to="/" 
-                  className="bg-white text-green-600 border border-green-600 px-8 py-3 rounded-lg hover:bg-green-50 transition-all duration-300 inline-block shadow-sm hover:shadow-md font-medium w-full sm:w-auto"
+                  className="bg-white text-green-600 border-2 border-green-600 px-8 py-3 rounded-lg hover:bg-green-50 transition-all duration-300 inline-block shadow-sm hover:shadow-md font-medium w-full sm:w-auto"
                 >
                   العودة للرئيسية
                 </Link>
@@ -375,6 +372,31 @@ function ServiceDetail() {
           </div>
         </div>
       </div>
+
+      {/* Image Modal */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4"
+          onClick={closeImageModal}
+        >
+          <div className="relative max-w-4xl w-full">
+            <button 
+              className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-lg"
+              onClick={closeImageModal}
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <img 
+              src={selectedImage} 
+              alt="صورة مكبرة" 
+              className="w-full object-contain max-h-screen"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+        </div>
+      )}
       
       <ContactFooter />
     </div>

@@ -19,7 +19,7 @@ function Contact() {
             </p>
           </div>
           <p className="text-center text-3xl font-bold text-gray-800 mb-2">
-            9:00 - 17:00
+            17:00 - 9:00
           </p>
           <p className="text-center text-gray-600 text-lg">
             من التاسعة صباحاً حتى الخامسة مساءً
@@ -66,11 +66,11 @@ function Contact() {
             <a href="mailto:info@mawasims.com.sa" className="text-gray-700 text-lg hover:text-green-600 transition-colors duration-200">
               info@mawasims.com.sa
             </a>
-            <a href="mailto:MB@mawasims.com.sa" className="text-gray-700 text-lg hover:text-green-600 transition-colors duration-200">
-              MB@mawasims.com.sa
+            <a href="mailto:MBadran@mawasims.com.sa" className="text-gray-700 text-lg hover:text-green-600 transition-colors duration-200">
+            MBadran@mawasims.com.sa
             </a>
-            <a href="mailto:Mtha@mawasims.com.sa" className="text-gray-700 text-lg hover:text-green-600 transition-colors duration-200">
-              Mtha@mawasims.com.sa
+            <a href="mailto:ZHesham@mawasims.com.sa" className="text-gray-700 text-lg hover:text-green-600 transition-colors duration-200">
+            ZHesham@mawasims.com.sa
             </a>
           </div>
         </div>
@@ -90,7 +90,7 @@ function Contact() {
             </div>
             <div className="text-right flex-1 mx-4">
               <a href="tel:0502532888" className="text-green-600 text-2xl font-medium hover:text-green-700 transition-colors">
-                محمد بدران - نظافة المباني 0502532888
+              خدمة العملاء: 0563995580  
               </a>
             </div>
           </div>
@@ -102,7 +102,7 @@ function Contact() {
             </div>
             <div className="text-right flex-1 mx-4">
               <a href="tel:0550820777" className="text-green-600 text-2xl font-medium hover:text-green-700 transition-colors">
-                إيجار حاويات - 0550820777
+              مدير الفرع: 0502532888
               </a>
             </div>
           </div>
@@ -114,22 +114,11 @@ function Contact() {
             </div>
             <div className="text-right flex-1 mx-4">
               <a href="tel:0550428333" className="text-green-600 text-2xl font-medium hover:text-green-700 transition-colors">
-                إيجار وبويات الدمام - 0550428333
+              مدير إدارة المشاريع: 0505242177
               </a>
             </div>
           </div>
 
-          {/* Phone 4 */}
-          <div className="flex flex-row-reverse items-center p-4 rounded-xl hover:bg-green-50 transition-colors duration-300">
-            <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center shadow-lg">
-              <Phone className="text-white w-8 h-8" />
-            </div>
-            <div className="text-right flex-1 mx-4">
-              <a href="tel:0502116888" className="text-green-600 text-2xl font-medium hover:text-green-700 transition-colors">
-                محمد بدران - نظافة المباني 0502116888
-              </a>
-            </div>
-          </div>
         </div>
       </div>
 
