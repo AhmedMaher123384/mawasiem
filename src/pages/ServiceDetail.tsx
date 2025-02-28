@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ContactFooter from '../components/ContactFooter';
 
@@ -50,7 +50,7 @@ const services = [
   {
     id: 1,
     title: 'نظافة الفلل والقصور',
-    image: img1,
+    image: img1_13,
     description: 'نظافة دقيقة للفل والقصور في الرياض',
     longDescription:
       'مواسم تقدم خدمات نظافة شاملة للفلل والقصور، تتضمن تنظيف الأرضيات، الجدران، النوافذ، الأسقف الجبسية، الخشب والباركيه، زجاج الشبابيك والواجهات الزجاجية، السجاد والستائر، التكييف المركزي وفتحات التهوية، والأثاث؛ مع التركيز على التفاصيل الدقيقة والأماكن صعبة الوصول إليها.',
@@ -93,7 +93,7 @@ const services = [
   {
     id: 2,
     title: 'جلي وتلميع الرخام بالآلماس',
-    image: img2,
+    image: img2_5,
     description: 'جلي وتلميع أرضيات الرخام في الرياض',
     longDescription:
       'نقدم خدمة جلي وتلميع الرخام باستخدام تقنية الألماس المتطورة لإزالة الخدوش والبقع واستعادة بريق الرخام الطبيعي. بالإضافة إلى ذلك، نتميز بمعالجة الكسور والفراغات باستخدام مادة الجولي الإيطالي عالية الجودة التي تُطابق ألوان الرخام بدقة، مما يضمن الحفاظ على التشطيبات الفاخرة وإبراز جمال الرخام بطريقة احترافية.',
@@ -121,7 +121,7 @@ const services = [
   {
     id: 3,
     title: 'نظافة وتطهير المجالس والكنب بالبخار',
-    image: img3,
+    image: img3_1,
     description: 'تنظيف مجالس بالبخار في الرياض',
     longDescription:
       'تقدم مواسم خدمات تنظيف وتطهير الكنب والمجالس باستخدام أحدث تقنيات البخار لإزالة البقع العميقة والبكتيريا بفعالية عالية. حرصاً على الحفاظ على جودة الأقمشة الفاخرة، يتم تنفيذ الخدمة بواسطة فريق مختص ومدرب باحترافية عالية وباستخدام أدوات متخصصة تضمن أفضل النتائج.',
@@ -144,7 +144,7 @@ const services = [
   {
     id: 4,
     title: 'نظافة المكيفات المركزية وفتحات التهوية',
-    image: img4,
+    image: img4_1,
     description: 'تنظيف التكييف المركزي وفتحات التهوية في الرياض',
     longDescription:
       'توفر مواسم خدمات شاملة لتنظيف المكيفات المركزية وفتحات التهوية، لضمان أداء مثالي وجودة هواء نقية داخل الفلل والقصور. تشمل الخدمة إزالة الأتربة والبكتيريا من الفلاتر والمكونات الداخلية، وتنظيف وتعقيم فتحات التهوية باستخدام مواد آمنة ومعتمدة، مع الحفاظ على كفاءة نظام التبريد وحماية التشطيبات والأثاث المحيط أثناء عملية التنظيف.',
@@ -174,7 +174,7 @@ const services = [
   {
     id: 6,
     title: 'غسيل وتنظيف الموكيت والسجاد بالبخار',
-    image: img6,
+    image: img6_1,
     description: 'تنظيف السجاد والموكيت في الرياض',
     longDescription:
       'نقدم خدمة غسيل وتنظيف الموكيت والسجاد بالبخار باستخدام أحدث الأجهزة والتقنيات. يتم تنظيف وغسيل الموكيت والسجاد مع تعطييرهما وإزالة البقع بفعالية؛ إذ يصل البخار إلى أنسجة الأقمشة لتذويب وإزالة البقع المستعصية دون التأثير على جودة الأنسجة.',
@@ -212,7 +212,7 @@ const services = [
   {
     id: 8,
     title: 'نظافة وتلميع النجف والثريات',
-    image: img8,
+    image: img8_1,
     description: 'تنظيف النجف الفاخر في الرياض',
     longDescription:
       'تقدم مواسم خدمات تنظيف وتلميع النجف والثريات بحرفية فائقة، معتمدة على فريق متخصص ذو خبرة عالية. نستخدم مواد آمنة وتقنيات متطورة لضمان إزالة الأتربة والبقع بدقة دون التسبب في أي ضرر، سواء كان النجف مصنوعًا من الكريستال أو المعادن الفاخرة، ليعود ببريقه الأصلي ويضفي لمسة من الفخامة على المكان.',
@@ -231,14 +231,18 @@ const services = [
     ],
   },
 ];
+
 function ServiceDetail() {
   const { id } = useParams();
   const service = services.find((s) => s.id === parseInt(id || '0'));
-  const [selectedImage, setSelectedImage] = React.useState(null);
+  const [openImage, setOpenImage] = useState<string | null>(null);
 
-  // استخدام useEffect للتمرير إلى أعلى الصفحة عند تحميلها
+  // عند تحميل الصفحة يتم التمرير تلقائيًا إلى محتوى الخدمة
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const serviceContent = document.getElementById('service-content');
+    if (serviceContent) {
+      serviceContent.scrollIntoView({ behavior: 'smooth' });
+    }
   }, []);
 
   if (!service) {
@@ -252,154 +256,182 @@ function ServiceDetail() {
     );
   }
 
-  const openImageModal = (image) => {
-    setSelectedImage(image);
-  };
-
-  const closeImageModal = () => {
-    setSelectedImage(null);
-  };
-
   return (
-    <div className="min-h-screen bg-gray-50 rtl">
-      {/* Hero Header with Parallax Effect */}
-      <div className="w-full h-96 bg-gradient-to-r from-green-800 to-green-600 relative overflow-hidden rounded-b-3xl shadow-xl">
-  <div className="absolute inset-0 flex items-center justify-center">
-    <div className="text-center px-4">
-      <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">{service.title}</h1>
-      <div className="w-32 h-1 bg-white mx-auto rounded-full"></div>
-      <p className="text-white text-xl mt-6 max-w-2xl mx-auto font-light">{service.description}</p>
-    </div>
-  </div>
-</div>
+    <>
+      {/* هنا نعرّف كلاس النص الذي يحتوي على ظل أخضر خفيف */}
+      <style>
+        {`
+          .text-shadow-green {
+            text-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+          }
+        `}
+      </style>
 
-      {/* Content Container */}
-      <div className="container mx-auto px-4 lg:px-8 py-16 -mt-20">
-        <div className="max-w-6xl mx-auto bg-white rounded-3xl shadow-2xl p-8 md:p-12 border-t-4 border-green-600">
-          {/* Description Card */}
-          <div className="mb-12 bg-green-50 p-6 rounded-2xl border-r-4 border-green-500 animate-fade-in">
-            <h2 className="text-2xl font-bold text-green-700 mb-4 text-right">نبذة عن الخدمة</h2>
-            <p className="text-lg text-gray-700 leading-relaxed text-right">
-              {service.longDescription}
-            </p>
+      <div className="min-h-screen bg-gray-50 rtl">
+        {/* Hero Header مع إزالة التأثير الأخضر لتظهر الصورة بوضوح */}
+        <div className="w-full h-96 relative overflow-hidden rounded-b-3xl shadow-xl">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url(${service.image})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          ></div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center px-4">
+              {/* نضيف كلاس النص المخصص لظل النص الأخضر */}
+              <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 text-shadow-green">
+                {service.title}
+              </h1>
+              <div className="w-32 h-1 bg-white mx-auto rounded-full"></div>
+              <p className="text-white text-xl mt-6 max-w-2xl mx-auto font-light text-shadow-green">
+                {service.description}
+              </p>
+            </div>
           </div>
+        </div>
 
-          {/* Improved Sub Services Section with full-width images */}
-          {service.subTitles && service.subTitles.length > 0 && (
-            <div className="mb-14 animate-fade-in-up" style={{ animationDelay: '0.2s' }} dir="rtl">
-              <div className="flex items-center mb-8">
-                <h3 className="text-2xl font-bold text-gray-800">
-                  <span className="border-b-3 border-green-500 pb-1">خدماتنا تشمل</span>
-                </h3>
-                <div className="flex-grow border-b border-gray-200 mr-4"></div>
-              </div>
-              
-              <div className="space-y-8" dir="rtl">
-                {service.subTitles.map((subService, index) => (
-                  <div
-                    key={index}
-                    className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
-                  >
-                    <div className="overflow-hidden relative" onClick={() => openImageModal(subService.image)}>
-                      <img
-                        src={subService.image}
-                        alt={subService.title}
-                        className="w-full h-72 md:h-96 object-cover object-center transition-transform duration-500 hover:scale-105 cursor-pointer"
-                        loading="lazy"
-                      />
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent opacity-70 py-4 px-6">
-                        <h4 className="text-xl font-bold text-white">{subService.title}</h4>
+        {/* محتوى الصفحة مع الحفاظ على جميع الأقسام بما فيها "خدماتنا تشمل" */}
+        <div id="service-content" className="container mx-auto px-4 lg:px-8 py-16 -mt-20">
+          <div className="max-w-6xl mx-auto bg-white rounded-3xl shadow-2xl p-8 md:p-12 border-t-4 border-green-600">
+            {/* بطاقة الوصف */}
+            <div className="mb-12 bg-green-50 p-6 rounded-2xl border-r-4 border-green-500 animate-fade-in">
+              <h2 className="text-2xl font-bold text-green-700 mb-4 text-right">نبذة عن الخدمة</h2>
+              <p className="text-lg text-gray-700 leading-relaxed text-right">
+                {service.longDescription}
+              </p>
+            </div>
+
+            {/* قسم "خدماتنا تشمل" مع جعل الصورة قابلة للنقر لفتحها */}
+            {service.subTitles && service.subTitles.length > 0 && (
+              <div className="mb-14 animate-fade-in-up" style={{ animationDelay: '0.2s' }} dir="rtl">
+                <div className="flex items-center mb-8">
+                  <h3 className="text-2xl font-bold text-gray-800">
+                    <span className="border-b-3 border-green-500 pb-1">خدماتنا تشمل</span>
+                  </h3>
+                  <div className="flex-grow border-b border-gray-200 mr-4"></div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" dir="rtl">
+                  {service.subTitles.map((subService, index) => (
+                    <div
+                      key={index}
+                      className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 flex flex-col h-full"
+                    >
+                      <div className="aspect-w-4 aspect-h-3 overflow-hidden relative">
+                        <img
+                          src={subService.image}
+                          alt={subService.title}
+                          className="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-105 cursor-pointer"
+                          loading="lazy"
+                          onClick={() => setOpenImage(subService.image)}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-300 pointer-events-none"></div>
+                      </div>
+                      <div className="p-4 flex-grow flex flex-col justify-between">
+                        <h4 className="text-lg font-bold text-gray-800 group-hover:text-green-600 transition-colors duration-300 text-right">
+                          {subService.title}
+                        </h4>
+                        <div className="mt-2 w-16 h-0.5 bg-green-500 transform origin-right transition-all duration-300 group-hover:w-full"></div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {/* Improved Advantages Section */}
-          {service.advantages && service.advantages.length > 0 && (
-            <div className="mb-14 animate-fade-in-up" style={{ animationDelay: '0.4s' }} dir="rtl">
-              <div className="flex items-center mb-8">
-                <h3 className="text-2xl font-bold text-gray-800">
-                  <span className="border-b-3 border-green-500 pb-1">مميزات الخدمة</span>
-                </h3>
-                <div className="flex-grow border-b border-gray-200 mr-4"></div>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {service.advantages.map((advantage, index) => (
-                  <div key={index} className="flex items-start space-x-4 space-x-reverse bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-green-200">
-                    <span className="flex-shrink-0 w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-6 h-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                      </svg>
-                    </span>
-                    <p className="text-gray-700 font-medium text-lg">{advantage}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+            {/* تمت إزالة قسم "معرض الصور" بالكامل */}
 
-          {/* Improved CTA Section */}
-          <div className="mt-10 text-center">
-            <div className="bg-gradient-to-r from-green-50 to-gray-50 p-8 rounded-2xl border border-green-100 shadow-inner">
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">هل تريد الاستفادة من خدماتنا؟</h3>
-              <p className="text-gray-600 mb-6">تواصل معنا اليوم للحصول على أفضل خدمة</p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Link 
-                  to="/contact" 
-                  className="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition-all duration-300 inline-block shadow-md hover:shadow-lg font-medium w-full sm:w-auto transform hover:-translate-y-1 hover:scale-105"
-                >
-                  تواصل معنا
-                </Link>
-                <Link 
-                  to="/" 
-                  className="bg-white text-green-600 border-2 border-green-600 px-8 py-3 rounded-lg hover:bg-green-50 transition-all duration-300 inline-block shadow-sm hover:shadow-md font-medium w-full sm:w-auto"
-                >
-                  العودة للرئيسية
-                </Link>
+            {/* قسم مميزات الخدمة */}
+            {service.advantages && service.advantages.length > 0 && (
+              <div className="mb-14 animate-fade-in-up" style={{ animationDelay: '0.4s' }} dir="rtl">
+                <div className="flex items-center mb-8">
+                  <h3 className="text-2xl font-bold text-gray-800">
+                    <span className="border-b-3 border-green-500 pb-1">مميزات الخدمة</span>
+                  </h3>
+                  <div className="flex-grow border-b border-gray-200 mr-4"></div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {service.advantages.map((advantage, index) => (
+                    <div
+                      key={index}
+                      className="flex items-start space-x-4 space-x-reverse bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-green-200"
+                    >
+                      <span className="flex-shrink-0 w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-6 h-6"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      </span>
+                      <p className="text-gray-700 font-medium text-lg">{advantage}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="mt-10 text-center">
+              <div className="bg-gradient-to-r from-green-50 to-gray-50 p-8 rounded-2xl border border-green-100 shadow-inner">
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">هل تريد الاستفادة من خدماتنا؟</h3>
+                <p className="text-gray-600 mb-6">تواصل معنا اليوم للحصول على أفضل خدمة</p>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <Link
+                    to="/contact"
+                    className="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition-all duration-300 inline-block shadow-md hover:shadow-lg font-medium w-full sm:w-auto transform hover:-translate-y-1 hover:scale-105"
+                  >
+                    تواصل معنا
+                  </Link>
+                  <Link
+                    to="/"
+                    className="bg-white text-green-600 border-2 border-green-600 px-8 py-3 rounded-lg hover:bg-green-50 transition-all duration-300 inline-block shadow-sm hover:shadow-md font-medium w-full sm:w-auto"
+                  >
+                    العودة للرئيسية
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
+        <ContactFooter />
+
+        {/* مودال عرض الصورة المكبرة */}
+        {openImage && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4">
+            <div className="relative max-w-4xl max-h-[90vh] overflow-hidden">
+              <img
+                src={openImage}
+                alt="صورة مكبرة"
+                className="max-w-full max-h-[90vh] object-contain"
+              />
+              <button
+                onClick={() => setOpenImage(null)}
+                className="absolute top-3 right-3 bg-white bg-opacity-75 hover:bg-opacity-100 rounded-full p-2 text-gray-800 hover:text-red-600 transition-colors duration-300"
+                aria-label="إغلاق"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        )}
       </div>
-
-      {/* Image Modal */}
-      {selectedImage && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4"
-          onClick={closeImageModal}
-        >
-          <div className="relative max-w-4xl w-full">
-            <button 
-              className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-lg"
-              onClick={closeImageModal}
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-            <img 
-              src={selectedImage} 
-              alt="صورة مكبرة" 
-              className="w-full object-contain max-h-screen"
-              onClick={(e) => e.stopPropagation()}
-            />
-          </div>
-        </div>
-      )}
-      
-      <ContactFooter />
-    </div>
+    </>
   );
 }
 

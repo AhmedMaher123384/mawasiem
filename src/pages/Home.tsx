@@ -12,7 +12,7 @@ import img4 from '../assets/4.png';
 import img5 from '../assets/5.png';
 import img6 from '../assets/6.png';
 import img7 from '../assets/7.png';
-import img8 from '../assets/n.png';
+import img8 from '../assets/8.png';
 
 // استيراد صور الهيرو
 import b1 from '../assets/b2.png';
