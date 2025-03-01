@@ -19,7 +19,7 @@ function Contact() {
             </p>
           </div>
           <p className="text-center text-3xl font-bold text-gray-800 mb-2">
-            17:00 - 9:00
+            15:00 - 7:00
           </p>
           <p className="text-center text-gray-600 text-lg">
             من التاسعة صباحاً حتى الخامسة مساءً
