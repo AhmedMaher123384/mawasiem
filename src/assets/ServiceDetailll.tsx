@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ContactFooter from '../components/ContactFooter';
 
-
 // استيراد الصور الأساسية
 import img1 from '../assets/1.png';
 import img2 from '../assets/2.png';
@@ -233,13 +232,12 @@ const services = [
   },
 ];
 
-
 function ServiceDetail() {
   const { id } = useParams();
   const service = services.find((s) => s.id === parseInt(id || '0'));
   const [openImage, setOpenImage] = useState<string | null>(null);
 
-  // عند تحميل الصفحة، يتم التمرير إلى محتوى الخدمة
+  // عند تحميل الصفحة يتم التمرير تلقائيًا إلى محتوى الخدمة
   useEffect(() => {
     const serviceContent = document.getElementById('service-content');
     if (serviceContent) {
@@ -260,97 +258,44 @@ function ServiceDetail() {
 
   return (
     <>
-      {/* تعريف كلاس ظل النص الأخضر */}
+      {/* هنا نعرّف كلاس النص الذي يحتوي على ظل أخضر خفيف */}
       <style>
         {`
           .text-shadow-green {
             text-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
           }
-          .hero-overlay {
-            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.7));
-          }
-          @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
-          .animate-fade-in {
-            animation: fadeIn 0.6s ease forwards;
-          }
-          @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
-          .animate-fade-in {
-            animation: fadeIn 0.6s ease forwards;
-          }
-          @keyframes modalAppear {
-            from {
-              opacity: 0;
-              transform: scale(0.9);
-            }
-            to {
-              opacity: 1;
-              transform: scale(1);
-            }
-          }
-          .animate-modal {
-            animation: modalAppear 0.5s ease-out forwards;
-          }
-          @keyframes modalZoom {
-            0% {
-              opacity: 0;
-              transform: scale(0.85);
-            }
-            100% {
-              opacity: 1;
-              transform: scale(1);
-            }
-          }
-          .animate-modal {
-            animation: modalZoom 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-          }
-          
-          
         `}
-        
       </style>
 
       <div className="min-h-screen bg-gray-50 rtl">
-        {/* Hero Header مع التراكب والكرڤ */}
-        <div className="w-full relative overflow-hidden" style={{ height: '70vh', maxHeight: '700px' }}>
+        {/* Hero Header مع إزالة التأثير الأخضر لتظهر الصورة بوضوح */}
+        <div className="w-full h-96 relative overflow-hidden rounded-b-3xl shadow-xl">
           <div
             className="absolute inset-0"
             style={{
               backgroundImage: `url(${service.image})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-              backgroundAttachment: 'fixed',
             }}
           ></div>
-          <div className="absolute inset-0 hero-overlay"></div>
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-4">
-            <div className="text-center max-w-4xl">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center px-4">
+              {/* نضيف كلاس النص المخصص لظل النص الأخضر */}
               <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 text-shadow-green">
                 {service.title}
               </h1>
-              <div className="w-32 h-1 bg-white mx-auto rounded-full mb-6"></div>
-              <p className="text-white text-xl md:text-2xl mt-4 max-w-3xl mx-auto font-light text-shadow-green">
+              <div className="w-32 h-1 bg-white mx-auto rounded-full"></div>
+              <p className="text-white text-xl mt-6 max-w-2xl mx-auto font-light text-shadow-green">
                 {service.description}
               </p>
             </div>
           </div>
-          {/* الكيرف (الموجة) أسفل الهيرو */}
-          <div className="absolute bottom-0 left-0 right-0">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" fill="#f9fafb">
-              <path d="M0,0 C240,95 480,95 720,95 C960,95 1200,95 1440,0 L1440,100 L0,100 Z"></path>
-            </svg>
-          </div>
         </div>
 
-        {/* محتوى الخدمة */}
+        {/* محتوى الصفحة مع الحفاظ على جميع الأقسام بما فيها "خدماتنا تشمل" */}
         <div id="service-content" className="container mx-auto px-4 lg:px-8 py-16 -mt-20">
           <div className="max-w-6xl mx-auto bg-white rounded-3xl shadow-2xl p-8 md:p-12 border-t-4 border-green-600">
-            {/* نبذة عن الخدمة */}
+            {/* بطاقة الوصف */}
             <div className="mb-12 bg-green-50 p-6 rounded-2xl border-r-4 border-green-500 animate-fade-in">
               <h2 className="text-2xl font-bold text-green-700 mb-4 text-right">نبذة عن الخدمة</h2>
               <p className="text-lg text-gray-700 leading-relaxed text-right">
@@ -358,26 +303,27 @@ function ServiceDetail() {
               </p>
             </div>
 
-            {/* قسم "خدماتنا تشمل" */}
+            {/* قسم "خدماتنا تشمل" مع جعل الصورة قابلة للنقر لفتحها */}
             {service.subTitles && service.subTitles.length > 0 && (
-              <div className="mb-14 animate-fade-in" style={{ animationDelay: '0.2s' }} dir="rtl">
+              <div className="mb-14 animate-fade-in-up" style={{ animationDelay: '0.2s' }} dir="rtl">
                 <div className="flex items-center mb-8">
                   <h3 className="text-2xl font-bold text-gray-800">
                     <span className="border-b-3 border-green-500 pb-1">خدماتنا تشمل</span>
                   </h3>
                   <div className="flex-grow border-b border-gray-200 mr-4"></div>
                 </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" dir="rtl">
                   {service.subTitles.map((subService, index) => (
                     <div
                       key={index}
                       className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 flex flex-col h-full"
                     >
-                      <div className="relative overflow-hidden">
+                      <div className="aspect-w-4 aspect-h-3 overflow-hidden relative">
                         <img
                           src={subService.image}
                           alt={subService.title}
-                          className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105 cursor-pointer"
+                          className="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-105 cursor-pointer"
                           loading="lazy"
                           onClick={() => setOpenImage(subService.image)}
                         />
@@ -395,15 +341,18 @@ function ServiceDetail() {
               </div>
             )}
 
-            {/* قسم "مميزات الخدمة" */}
+            {/* تمت إزالة قسم "معرض الصور" بالكامل */}
+
+            {/* قسم مميزات الخدمة */}
             {service.advantages && service.advantages.length > 0 && (
-              <div className="mb-14 animate-fade-in" style={{ animationDelay: '0.4s' }} dir="rtl">
+              <div className="mb-14 animate-fade-in-up" style={{ animationDelay: '0.4s' }} dir="rtl">
                 <div className="flex items-center mb-8">
                   <h3 className="text-2xl font-bold text-gray-800">
                     <span className="border-b-3 border-green-500 pb-1">مميزات الخدمة</span>
                   </h3>
                   <div className="flex-grow border-b border-gray-200 mr-4"></div>
                 </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {service.advantages.map((advantage, index) => (
                     <div
@@ -429,7 +378,6 @@ function ServiceDetail() {
               </div>
             )}
 
-            {/* قسم "هل تريد الاستفادة من خدماتنا؟" */}
             <div className="mt-10 text-center">
               <div className="bg-gradient-to-r from-green-50 to-gray-50 p-8 rounded-2xl border border-green-100 shadow-inner">
                 <h3 className="text-2xl font-bold text-gray-800 mb-4">هل تريد الاستفادة من خدماتنا؟</h3>
@@ -457,24 +405,31 @@ function ServiceDetail() {
 
         {/* مودال عرض الصورة المكبرة */}
         {openImage && (
-  <div
-    className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 backdrop-blur-lg transition-opacity duration-700"
-    onClick={() => setOpenImage(null)}
-  >
-    <div
-      className="relative max-w-4xl max-h-[90vh] overflow-hidden rounded-2xl shadow-2xl transform transition-transform duration-700 animate-modal"
-      onClick={(e) => e.stopPropagation()}
-    >
-      <img
-        src={openImage}
-        alt="صورة مكبرة"
-        className="w-full h-full object-contain"
-      />
-    </div>
-  </div>
-)}
-
-
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4">
+            <div className="relative max-w-4xl max-h-[90vh] overflow-hidden">
+              <img
+                src={openImage}
+                alt="صورة مكبرة"
+                className="max-w-full max-h-[90vh] object-contain"
+              />
+              <button
+                onClick={() => setOpenImage(null)}
+                className="absolute top-3 right-3 bg-white bg-opacity-75 hover:bg-opacity-100 rounded-full p-2 text-gray-800 hover:text-red-600 transition-colors duration-300"
+                aria-label="إغلاق"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
