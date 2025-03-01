@@ -373,16 +373,16 @@ function ServiceDetail() {
                       key={index}
                       className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 flex flex-col h-full"
                     >
-                      <div className="relative overflow-hidden">
-                        <img
-                          src={subService.image}
-                          alt={subService.title}
-                          className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105 cursor-pointer"
-                          loading="lazy"
-                          onClick={() => setOpenImage(subService.image)}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-300 pointer-events-none"></div>
-                      </div>
+                     <div className="relative overflow-hidden aspect-[4/3] md:aspect-auto">
+  <img
+    src={subService.image}
+    alt={subService.title}
+    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 cursor-pointer"
+    loading="lazy"
+    onClick={() => setOpenImage(subService.image)}
+  />
+  <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-300 pointer-events-none"></div>
+</div>
                       <div className="p-4 flex-grow flex flex-col justify-between">
                         <h4 className="text-lg font-bold text-gray-800 group-hover:text-green-600 transition-colors duration-300 text-right">
                           {subService.title}
