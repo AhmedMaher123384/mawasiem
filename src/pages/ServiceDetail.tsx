@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ContactFooter from '../components/ContactFooter';
 
-
 // استيراد الصور الأساسية
 import img1 from '../assets/1.png';
 import img2 from '../assets/2.png';
@@ -233,7 +232,6 @@ const services = [
   },
 ];
 
-
 function ServiceDetail() {
   const { id } = useParams();
   const service = services.find((s) => s.id === parseInt(id || '0'));
@@ -260,7 +258,6 @@ function ServiceDetail() {
 
   return (
     <>
-      {/* تعريف كلاس ظل النص الأخضر */}
       <style>
         {`
           .text-shadow-green {
@@ -268,13 +265,6 @@ function ServiceDetail() {
           }
           .hero-overlay {
             background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.7));
-          }
-          @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
-          .animate-fade-in {
-            animation: fadeIn 0.6s ease forwards;
           }
           @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -309,23 +299,27 @@ function ServiceDetail() {
           .animate-modal {
             animation: modalZoom 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
           }
-          
-          
+          /* تنسيق خلفية الـ Hero مع تأثير Parallax على الشاشات الكبيرة */
+          .hero-bg {
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+          }
+          /* تغيير الخاصية على الموبايل لضمان ظهور الصورة بجودتها */
+          @media (max-width: 768px) {
+            .hero-bg {
+              background-attachment: scroll !important;
+            }
+          }
         `}
-        
       </style>
 
       <div className="min-h-screen bg-gray-50 rtl">
-        {/* Hero Header مع التراكب والكرڤ */}
+        {/* Hero Header */}
         <div className="w-full relative overflow-hidden" style={{ height: '70vh', maxHeight: '700px' }}>
           <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url(${service.image})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundAttachment: 'fixed',
-            }}
+            className="absolute inset-0 hero-bg"
+            style={{ backgroundImage: `url(${service.image})` }}
           ></div>
           <div className="absolute inset-0 hero-overlay"></div>
           <div className="absolute inset-0 flex flex-col items-center justify-center px-4">
@@ -339,7 +333,6 @@ function ServiceDetail() {
               </p>
             </div>
           </div>
-          {/* الكيرف (الموجة) أسفل الهيرو */}
           <div className="absolute bottom-0 left-0 right-0">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" fill="#f9fafb">
               <path d="M0,0 C240,95 480,95 720,95 C960,95 1200,95 1440,0 L1440,100 L0,100 Z"></path>
@@ -373,16 +366,16 @@ function ServiceDetail() {
                       key={index}
                       className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 flex flex-col h-full"
                     >
-                     <div className="relative overflow-hidden aspect-[4/3] md:aspect-auto">
-  <img
-    src={subService.image}
-    alt={subService.title}
-    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 cursor-pointer"
-    loading="lazy"
-    onClick={() => setOpenImage(subService.image)}
-  />
-  <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-300 pointer-events-none"></div>
-</div>
+                      <div className="relative overflow-hidden aspect-[4/3] md:aspect-auto">
+                        <img
+                          src={subService.image}
+                          alt={subService.title}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 cursor-pointer"
+                          loading="lazy"
+                          onClick={() => setOpenImage(subService.image)}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-300 pointer-events-none"></div>
+                      </div>
                       <div className="p-4 flex-grow flex flex-col justify-between">
                         <h4 className="text-lg font-bold text-gray-800 group-hover:text-green-600 transition-colors duration-300 text-right">
                           {subService.title}
@@ -457,24 +450,22 @@ function ServiceDetail() {
 
         {/* مودال عرض الصورة المكبرة */}
         {openImage && (
-  <div
-    className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 backdrop-blur-lg transition-opacity duration-700"
-    onClick={() => setOpenImage(null)}
-  >
-    <div
-      className="relative max-w-4xl max-h-[90vh] overflow-hidden rounded-2xl shadow-2xl transform transition-transform duration-700 animate-modal"
-      onClick={(e) => e.stopPropagation()}
-    >
-      <img
-        src={openImage}
-        alt="صورة مكبرة"
-        className="w-full h-full object-contain"
-      />
-    </div>
-  </div>
-)}
-
-
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 backdrop-blur-lg transition-opacity duration-700"
+            onClick={() => setOpenImage(null)}
+          >
+            <div
+              className="relative max-w-4xl max-h-[90vh] overflow-hidden rounded-2xl shadow-2xl transform transition-transform duration-700 animate-modal"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={openImage}
+                alt="صورة مكبرة"
+                className="w-full h-full object-contain"
+              />
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
