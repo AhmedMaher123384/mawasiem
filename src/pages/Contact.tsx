@@ -22,7 +22,7 @@ function Contact() {
             15:00 - 7:00
           </p>
           <p className="text-center text-gray-600 text-lg">
-            من التاسعة صباحاً حتى الخامسة مساءً
+            من السابعة صباحاً حتى الثالثة مساءً
           </p>
         </div>
       </div>
