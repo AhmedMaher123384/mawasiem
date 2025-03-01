@@ -23,7 +23,7 @@ function ContactFooter() {
             </div>
             <h3 className="text-xl font-bold mb-3 text-green-700">الموقع الحالي</h3>
             <p className="text-gray-700 cursor-pointer hover:text-green-600 transition-colors" onClick={openGoogleMaps}>
-              طريق الملك سلمان، المملكة العربية السعودية
+              طريق الملك عبدالله، المملكة العربية السعودية
             </p>
           </div>
           

@@ -275,40 +275,73 @@ function Home() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
-            <Link
-              key={service.id}
-              to={`/service/${service.id}`}
-              className={`bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:-translate-y-2 group ${
-                isServicesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
-              }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
+           // تعديل كود العرض في الخدمات داخل ملف Home.tsx
+// تحديداً في الجزء الخاص بعرض الخدمات (services map)
+
+<Link
+  key={service.id}
+  to={`/service/${service.id}`}
+  className={`bg-white rounded-xl shadow-lg overflow-hidden group relative flex flex-col h-full transition-all duration-500 hover:shadow-2xl border border-gray-100 hover:border-green-200 ${
+    isServicesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
+  }`}
+  style={{ transitionDelay: `${index * 100}ms` }}
+>
+  {/* شريط تدرج علوي */}
+  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 via-teal-500 to-green-600 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-in-out"></div>
+  
+  {/* حاوية الصورة مع تأثيرات hover */}
+  <div className="h-56 overflow-hidden relative">
+    <img
+      src={service.image}
+      alt={service.title}
+      className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110"
+      loading="lazy"
+    />
+    {/* تأثير تدرج الشفافية عند hover */}
+    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-emerald-700/30 to-teal-900/50 transition-all duration-500 ease-out"></div>
+  </div>
+  
+  {/* محتوى الخدمة */}
+  <div className="p-6 flex-grow text-right">
+    {/* عنوان الخدمة مع تأثير underline */}
+    <div className="relative inline-block mb-3">
+      <h3 className="text-xl font-bold text-gray-800 group-hover:text-emerald-700 transition-colors duration-500">
+        {service.title}
+      </h3>
+      <div className="absolute bottom-0 right-0 w-0 group-hover:w-full h-0.5 bg-emerald-500 transition-all duration-700 ease-out"></div>
+    </div>
+    
+    <p className="text-gray-600 text-sm leading-relaxed">{service.description}</p>
+  </div>
+  
+  {/* زر استكشف الخدمة بخلفية خضراء موحدة */}
+  <div className="mt-auto">
+    <div className="bg-green-600 hover:bg-green-700 transition-all duration-500 relative overflow-hidden">
+      <div className="py-4 px-6 flex items-center justify-between relative z-10">
+        {/* أيقونة السهم */}
+        <div className="relative flex items-center justify-center">
+          <div className="w-8 h-8 rounded-full bg-green-600 shadow-md flex items-center justify-center transform group-hover:translate-x-2 transition-all duration-500 relative overflow-hidden z-20">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4 text-white transform transition-all duration-300 group-hover:rotate-90"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              <div className="h-56 overflow-hidden relative">
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                  <div className="p-4 w-full transform translate-y-10 group-hover:translate-y-0 transition-transform duration-500">
-                    <span className="bg-green-600 text-white py-1.5 px-4 rounded-full text-sm font-medium inline-flex items-center">
-                      استعرض التفاصيل
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                      </svg>
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="p-6 text-right">
-                <div className="flex justify-between items-center mb-3">
-                  <ArrowLeft className="text-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-4 group-hover:translate-x-0" />
-                  <h3 className="text-xl font-bold group-hover:text-green-600 transition-colors duration-300">{service.title}</h3>
-                </div>
-                <p className="text-gray-600 text-sm transform group-hover:translate-x-2 transition-transform duration-300">{service.description}</p>
-              </div>
-            </Link>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+        
+        {/* نص الزر */}
+        <span className="font-medium text-white transition-all duration-300 text-base tracking-wide px-3 py-1 rounded-md">
+          استكشف الخدمة
+        </span>
+      </div>
+    </div>
+  </div>
+</Link>
+
           ))}
         </div>
       </div>
