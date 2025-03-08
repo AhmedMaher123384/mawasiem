@@ -1,107 +1,137 @@
 import React from 'react';
-import { Phone, Mail, MapPin } from 'lucide-react';
-import logo from '../assets/logo.png';
+import { Phone, Mail, MapPin, ExternalLink, Users, Headphones, UserCheck } from 'lucide-react';
 
-function ContactFooter() {
+const ContactSection = () => {
   const openGoogleMaps = () => {
-    window.open('https://www.google.com/maps/place/24%C2%B045\'04.5%22N+46%C2%B043\'12.1%22E/@24.7512609,46.7200274,17z/data=!3m1!4b1!4m4!3m3!8m2!3d24.7512609!4d46.7200274?entry=ttu&g_ep=EgoyMDI1MDIyNS4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D', '_blank');
+    window.open(
+      "https://www.google.com/maps/place/24%C2%B045'04.5%22N+46%C2%B043'12.1%22E/@24.7512609,46.7200274,17z",
+      "_blank"
+    );
   };
 
   return (
-    <div className="bg-gradient-to-r from-green-50 to-green-100 py-16 mt-12">
+    <div className="bg-gradient-to-br from-green-50 via-white to-green-50 py-12">
       <div className="container mx-auto px-4">
-        {/* تعديل الصف ليكون أكثر تنظيماً وأفضل شكلاً */}
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          
-          {/* Location Section */}
-          <div className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-            <div 
-              className="w-24 h-24 bg-green-50 rounded-full flex items-center justify-center mb-4 cursor-pointer hover:bg-green-100 transition-colors"
-              onClick={openGoogleMaps}
-            >
-              <MapPin className="w-12 h-12 text-green-600" />
-            </div>
-            <h3 className="text-xl font-bold mb-3 text-green-700">الموقع الحالي</h3>
-            <p className="text-gray-700 cursor-pointer hover:text-green-600 transition-colors" onClick={openGoogleMaps}>
-              طريق الملك عبدالله، المملكة العربية السعودية
-            </p>
-          </div>
-          
-          {/* Email Section */}
-          <div className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-            <div className="w-24 h-24 bg-green-50 rounded-full flex items-center justify-center mb-4">
-              <Mail className="w-12 h-12 text-green-600" />
-            </div>
-            <h3 className="text-xl font-bold mb-3 text-green-700">البريد الإلكتروني</h3>
-            <div className="text-gray-700">
-              <a 
-                href="mailto:info@mawasims.com.sa" 
-                className="block mb-1 hover:text-green-600 transition-colors"
-              >
-                info@mawasims.com.sa
-              </a>
-              <a 
-                href="mailto:MBadran@mawasims.com.sa" 
-                className="block mb-1 hover:text-green-600 transition-colors"
-              >
-                MBadran@mawasims.com.sa
-              </a>
-              <a 
-                href="mailto:ZHesham@mawasims.com.sa" 
-                className="block hover:text-green-600 transition-colors"
-              >
-               ZHesham@mawasims.com.sa
-
-              </a>
-            </div>
-          </div>
-          
-          {/* Phone Section */}
-          <div className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-            <div className="w-24 h-24 bg-green-50 rounded-full flex items-center justify-center mb-4">
-              <Phone className="w-12 h-12 text-green-600" />
-            </div>
-            <h3 className="text-xl font-bold mb-3 text-green-700">رقم الجوال</h3>
-            <div className="text-gray-700">
-              <a 
-                href="tel:+966507017988" 
-                className="block mb-1 hover:text-green-600 transition-colors"
-              >
-                مدير الفرع: 0502532888
-              </a>
-              <a 
-                href="tel:+966505087077" 
-                className="block mb-1 hover:text-green-600 transition-colors"
-              >
-                خدمة العملاء: 0563995580
-              </a>
-              <a 
-                href="tel:+966554263333" 
-                className="block mb-1 hover:text-green-600 transition-colors"
-              >
-
-مدير إدارة المشاريع: 0505242177          
-    </a>
-            </div>
-          </div>
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-green-800 mb-2">تواصل معنا</h2>
+          <div className="w-20 h-1 bg-green-600 mx-auto mb-3 rounded-full"></div>
+          <p className="text-gray-600 max-w-2xl mx-auto text-sm">نحن دائماً في خدمتكم. يمكنكم التواصل معنا من خلال أي من الوسائل التالية</p>
         </div>
-        
-        {/* Logo Section */}
-        <div className="mt-16 flex justify-center">
-          <img 
-            src={logo}
-            alt="Mawasim Logo" 
-            className="h-32 transition-transform duration-500 hover:scale-105"
-          />
-        </div>
-        
-        {/* Copyright Section */}
-        <div className="mt-8 text-center">
-          <p className="text-gray-600">© {new Date().getFullYear()} مواسم الخدمات. جميع الحقوق محفوظة</p>
+
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-5">
+          {/* Location Card */}
+          <div 
+            className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group cursor-pointer"
+            onClick={openGoogleMaps}
+          >
+            <div className="bg-green-600 h-2 w-full group-hover:bg-green-500 transition-colors"></div>
+            <div className="p-5">
+              <div className="bg-green-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-200 transition-colors">
+                <MapPin className="w-7 h-7 text-green-600" />
+              </div>
+              
+              <h3 className="text-lg font-bold text-center text-green-800 mb-2">الموقع الحالي</h3>
+              
+              <div className="text-center">
+                <p className="text-gray-700 text-sm mb-3">طريق الملك عبدالله، المملكة العربية السعودية</p>
+                <button className="mx-auto flex items-center justify-center text-green-600 font-medium hover:text-green-700 transition-colors bg-green-50 py-1.5 px-3 rounded-lg hover:bg-green-100 text-sm">
+                  <ExternalLink className="w-3.5 h-3.5 ml-1.5" />
+                  <span>افتح في الخريطة</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          {/* Email Card */}
+          <div className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group">
+            <div className="bg-green-600 h-2 w-full group-hover:bg-green-500 transition-colors"></div>
+            <div className="p-5">
+              <div className="bg-green-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-200 transition-colors">
+                <Mail className="w-7 h-7 text-green-600" />
+              </div>
+              
+              <h3 className="text-lg font-bold text-center text-green-800 mb-3">البريد الإلكتروني</h3>
+              
+              <div className="w-full">
+                <a href="mailto:info@mawasims.com.sa" 
+                   className="flex items-center justify-center space-x-1 space-x-reverse py-2 px-2 rounded-md hover:bg-green-50 transition-colors mb-1 border border-gray-100">
+                  <Users className="w-4 h-4 text-green-600 ml-1.5" />
+                  <span className="text-gray-700 hover:text-green-700 transition-colors text-sm">info@mawasims.com.sa</span>
+                </a>
+                
+                <a href="mailto:MBadran@mawasims.com.sa" 
+                   className="flex items-center justify-center space-x-1 space-x-reverse py-2 px-2 rounded-md hover:bg-green-50 transition-colors mb-1 border border-gray-100">
+                  <UserCheck className="w-4 h-4 text-green-600 ml-1.5" />
+                  <span className="text-gray-700 hover:text-green-700 transition-colors text-sm">MBadran@mawasims.com.sa</span>
+                </a>
+                
+                <a href="mailto:ZHesham@mawasims.com.sa" 
+                   className="flex items-center justify-center space-x-1 space-x-reverse py-2 px-2 rounded-md hover:bg-green-50 transition-colors border border-gray-100">
+                  <UserCheck className="w-4 h-4 text-green-600 ml-1.5" />
+                  <span className="text-gray-700 hover:text-green-700 transition-colors text-sm">ZHesham@mawasims.com.sa</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          {/* Phone Numbers Card */}
+          <div className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group">
+            <div className="bg-green-600 h-2 w-full group-hover:bg-green-500 transition-colors"></div>
+            <div className="p-5">
+              <div className="bg-green-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-200 transition-colors">
+                <Phone className="w-7 h-7 text-green-600" />
+              </div>
+              
+              <h3 className="text-lg font-bold text-center text-green-800 mb-2">أرقام الجوال</h3>
+              
+              <div className="w-full">
+                <div className="text-center mb-1">
+                  <div className="inline-flex items-center justify-center bg-green-100 px-2 py-0.5 rounded-full mb-1">
+                    <Headphones className="w-3.5 h-3.5 text-green-600 ml-1" />
+                    <span className="text-green-700 font-medium text-xs">خدمة العملاء</span>
+                  </div>
+                </div>
+                
+                <div className="space-y-1">
+                  {["0563995580", "0502116888", "0563738927"].map((phone, index) => (
+                    <a key={index} href={`tel:${phone}`} 
+                       className="flex items-center justify-center py-1.5 rounded-md hover:bg-green-50 transition-colors border border-gray-100">
+                      <span className="text-gray-700 hover:text-green-700 transition-colors font-medium text-sm">{phone}</span>
+                    </a>
+                  ))}
+                </div>
+                
+                <div className="border-t border-green-100 pt-2 mt-2">
+                  <div className="text-center mb-1">
+                    <div className="inline-flex items-center justify-center bg-green-100 px-2 py-0.5 rounded-full mb-1">
+                      <Users className="w-3.5 h-3.5 text-green-600 ml-1" />
+                      <span className="text-green-700 font-medium text-xs">أرقام الإدارة</span>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-1">
+                    <a href="tel:0502532888" 
+                       className="flex items-center justify-center py-1.5 rounded-md hover:bg-green-50 transition-colors border border-gray-100">
+                      <span className="text-gray-700 hover:text-green-700 transition-colors text-xs">
+                        <span className="font-medium">مدير الفرع:</span> 0502532888
+                      </span>
+                    </a>
+                    
+                    <a href="tel:0505242177" 
+                       className="flex items-center justify-center py-1.5 rounded-md hover:bg-green-50 transition-colors border border-gray-100">
+                      <span className="text-gray-700 hover:text-green-700 transition-colors text-xs">
+                        <span className="font-medium">مدير إدارة المشاريع:</span> 0505242177
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default ContactFooter;
+export default ContactSection;
