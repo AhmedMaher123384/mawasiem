@@ -111,17 +111,15 @@ const ContactSection = () => {
                   
                   <div className="space-y-1">
                     <a href="tel:0502532888" 
-                       className="flex items-center justify-center py-1.5 rounded-md hover:bg-green-50 transition-colors border border-gray-100">
-                      <span className="text-gray-700 hover:text-green-700 transition-colors text-xs">
-                        <span className="font-medium">مدير الفرع:</span> 0502532888
-                      </span>
+                       className="flex flex-col items-center justify-center py-1.5 rounded-md hover:bg-green-50 transition-colors border border-gray-100">
+                      <span className="text-green-700 font-medium text-xs mb-0.5">مدير الفرع</span>
+                      <span className="text-gray-700 hover:text-green-700 transition-colors text-sm">0502532888</span>
                     </a>
                     
                     <a href="tel:0505242177" 
-                       className="flex items-center justify-center py-1.5 rounded-md hover:bg-green-50 transition-colors border border-gray-100">
-                      <span className="text-gray-700 hover:text-green-700 transition-colors text-xs">
-                        <span className="font-medium">مدير إدارة المشاريع:</span> 0505242177
-                      </span>
+                       className="flex flex-col items-center justify-center py-1.5 rounded-md hover:bg-green-50 transition-colors border border-gray-100">
+                      <span className="text-green-700 font-medium text-xs mb-0.5">مدير إدارة المشاريع</span>
+                      <span className="text-gray-700 hover:text-green-700 transition-colors text-sm">0505242177</span>
                     </a>
                   </div>
                 </div>
