@@ -123,14 +123,20 @@ function Contact() {
               className="flex flex-col items-center justify-center p-6 bg-green-50 rounded-xl text-green-600 text-2xl font-medium hover:bg-green-100 transition-colors"
             >
               <Phone className="w-10 h-10 mb-2" />
-              مدير الفرع: 0502532888
+              <div className="text-center">
+                <div>مدير الفرع</div>
+                <div>0502532888</div>
+              </div>
             </a>
             <a
               href="tel:0505242177"
               className="flex flex-col items-center justify-center p-6 bg-green-50 rounded-xl text-green-600 text-2xl font-medium hover:bg-green-100 transition-colors"
             >
               <Phone className="w-10 h-10 mb-2" />
-              مدير إدارة المشاريع: 0505242177
+              <div className="text-center">
+                <div>مدير إدارة المشاريع</div>
+                <div>0505242177</div>
+              </div>
             </a>
           </div>
         </div>
