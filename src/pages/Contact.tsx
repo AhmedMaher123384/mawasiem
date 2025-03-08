@@ -19,10 +19,10 @@ function Contact() {
             </p>
           </div>
           <p className="text-center text-3xl font-bold text-gray-800 mb-2">
-            15:00 - 7:00
+            17:00 - 9:00
           </p>
           <p className="text-center text-gray-600 text-lg">
-            من السابعة صباحاً حتى الثالثة مساءً
+            من التاسعة صباحاً حتى الخامسة مساءً
           </p>
         </div>
       </div>
@@ -67,10 +67,10 @@ function Contact() {
               info@mawasims.com.sa
             </a>
             <a href="mailto:MBadran@mawasims.com.sa" className="text-gray-700 text-lg hover:text-green-600 transition-colors duration-200">
-            MBadran@mawasims.com.sa
+              MBadran@mawasims.com.sa
             </a>
             <a href="mailto:ZHesham@mawasims.com.sa" className="text-gray-700 text-lg hover:text-green-600 transition-colors duration-200">
-            ZHesham@mawasims.com.sa
+              ZHesham@mawasims.com.sa
             </a>
           </div>
         </div>
@@ -82,43 +82,57 @@ function Contact() {
           اتصل بنا الآن
         </h2>
         
-        <div className="space-y-8">
-          {/* Phone 1 */}
-          <div className="flex flex-row-reverse items-center p-4 rounded-xl hover:bg-green-50 transition-colors duration-300">
-            <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center shadow-lg">
-              <Phone className="text-white w-8 h-8" />
-            </div>
-            <div className="text-right flex-1 mx-4">
-              <a href="tel:0502532888" className="text-green-600 text-2xl font-medium hover:text-green-700 transition-colors">
-              خدمة العملاء: 0563995580  
-              </a>
-            </div>
+        {/* خدمة العملاء */}
+        <div className="mb-12">
+          <h3 className="text-2xl font-medium text-green-600 text-center mb-6">
+            خدمة العملاء
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <a
+              href="tel:0563995580"
+              className="flex flex-col items-center justify-center p-6 bg-green-50 rounded-xl text-green-600 text-2xl font-medium hover:bg-green-100 transition-colors"
+            >
+              <Phone className="w-10 h-10 mb-2" />
+              0563995580
+            </a>
+            <a
+              href="tel:0502116888"
+              className="flex flex-col items-center justify-center p-6 bg-green-50 rounded-xl text-green-600 text-2xl font-medium hover:bg-green-100 transition-colors"
+            >
+              <Phone className="w-10 h-10 mb-2" />
+              0502116888
+            </a>
+            <a
+              href="tel:0563738927"
+              className="flex flex-col items-center justify-center p-6 bg-green-50 rounded-xl text-green-600 text-2xl font-medium hover:bg-green-100 transition-colors"
+            >
+              <Phone className="w-10 h-10 mb-2" />
+              0563738927
+            </a>
           </div>
+        </div>
 
-          {/* Phone 2 */}
-          <div className="flex flex-row-reverse items-center p-4 rounded-xl hover:bg-green-50 transition-colors duration-300">
-            <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center shadow-lg">
-              <Phone className="text-white w-8 h-8" />
-            </div>
-            <div className="text-right flex-1 mx-4">
-              <a href="tel:0550820777" className="text-green-600 text-2xl font-medium hover:text-green-700 transition-colors">
+        {/* أرقام الإدارة */}
+        <div>
+          <h3 className="text-2xl font-medium text-green-600 text-center mb-6">
+            أرقام الإدارة
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <a
+              href="tel:0502532888"
+              className="flex flex-col items-center justify-center p-6 bg-green-50 rounded-xl text-green-600 text-2xl font-medium hover:bg-green-100 transition-colors"
+            >
+              <Phone className="w-10 h-10 mb-2" />
               مدير الفرع: 0502532888
-              </a>
-            </div>
-          </div>
-
-          {/* Phone 3 */}
-          <div className="flex flex-row-reverse items-center p-4 rounded-xl hover:bg-green-50 transition-colors duration-300">
-            <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center shadow-lg">
-              <Phone className="text-white w-8 h-8" />
-            </div>
-            <div className="text-right flex-1 mx-4">
-              <a href="tel:0550428333" className="text-green-600 text-2xl font-medium hover:text-green-700 transition-colors">
+            </a>
+            <a
+              href="tel:0505242177"
+              className="flex flex-col items-center justify-center p-6 bg-green-50 rounded-xl text-green-600 text-2xl font-medium hover:bg-green-100 transition-colors"
+            >
+              <Phone className="w-10 h-10 mb-2" />
               مدير إدارة المشاريع: 0505242177
-              </a>
-            </div>
+            </a>
           </div>
-
         </div>
       </div>
 
