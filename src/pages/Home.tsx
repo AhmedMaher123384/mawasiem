@@ -269,14 +269,14 @@ function Home() {
               heroLoaded ? 'opacity-100 transform-none' : 'opacity-0 -translate-y-10'
             }`}
           >
-            مواسم الخدمات
+            شركة مواسم الخدمات
           </h1>
           <p 
             className={`text-2xl max-w-2xl text-center mb-8 transition-all duration-300 delay-150 ${
               heroLoaded ? 'opacity-100 transform-none' : 'opacity-0 -translate-y-10'
             }`}
           >
-            نقدم خدمات نظافة احترافية للفلل والقصور في الرياض بأعلى معايير الجودة
+شركة تقدم حلول راقية لنظافه الفلل و القصور و الفنادق و المولات 
           </p>
           <div 
             className={`flex flex-wrap justify-center gap-4 transition-all duration-300 delay-200 ${
@@ -288,7 +288,7 @@ function Home() {
               onClick={scrollToServices} 
               className="bg-gradient-to-r from-green-600 to-green-800 text-white py-4 px-10 rounded-lg font-bold text-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 relative overflow-hidden group"
             >
-              <span className="relative z-10">استعرض خدماتنا</span>
+              <span className="relative z-10">خدماتنا</span>
               <span className="absolute inset-0 bg-green-700/50 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
             </a>
           </div>
