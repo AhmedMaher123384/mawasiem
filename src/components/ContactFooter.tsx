@@ -81,9 +81,8 @@ const ContactSection = () => {
                     <span className="text-green-700 font-medium text-xs">خدمة العملاء</span>
                   </div>
                 </div>
-                
                 <div className="space-y-1">
-                  {["0563995580", "0502116888", "0563738927"].map((phone, index) => (
+                  {["0563995580", "0502116888", "0547493606"].map((phone, index) => (
                     <a key={index} href={`tel:${phone}`} 
                        className="flex items-center justify-center py-1.5 rounded-md hover:bg-green-50 transition-colors border border-gray-100">
                       <span className="text-gray-700 hover:text-green-700 transition-colors font-medium text-sm">{phone}</span>
