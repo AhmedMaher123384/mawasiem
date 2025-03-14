@@ -66,12 +66,7 @@ function Contact() {
             <a href="mailto:info@mawasims.com.sa" className="text-gray-700 text-lg hover:text-green-600 transition-colors duration-200">
               info@mawasims.com.sa
             </a>
-            <a href="mailto:MBadran@mawasims.com.sa" className="text-gray-700 text-lg hover:text-green-600 transition-colors duration-200">
-              MBadran@mawasims.com.sa
-            </a>
-            <a href="mailto:ZHesham@mawasims.com.sa" className="text-gray-700 text-lg hover:text-green-600 transition-colors duration-200">
-              ZHesham@mawasims.com.sa
-            </a>
+      
           </div>
         </div>
       </div>
