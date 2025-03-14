@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Star, Phone, Clock, Shield, Award, ThumbsUp } from 'lucide-react';
+import { ArrowLeft, Star, Phone, Clock, Shield, Award, ThumbsUp , Sparkles } from 'lucide-react';
 
 // Lazy load components that aren't immediately visible
 const ContactFooter = lazy(() => import('../components/ContactFooter'));
@@ -117,6 +117,17 @@ const features: Feature[] = [
     title: 'دعم على مدار الساعة',
     description: 'فريق خدمة العملاء جاهز للرد على استفساراتكم في أي وقت طوال اليوم'
   }
+  ,{
+    icon: <Sparkles className="text-green-600 w-8 h-8" />,
+    title: 'حلول النظافة',
+    description: 'نهتم بالتفاصيل ونقدم حلولاً متكاملة تضمن نظافة مثالية لجميع المنشآت على اختلاف أنواعها'
+  }
+  ,
+    {
+      icon: <Shield className="text-green-600 w-8 h-8" />,
+      title: 'مواد آمنة',
+      description: 'نستخدم منتجات تنظيف عالية الجودة وآمنة مع فعالية قصوى تناسب جميع المنشآت'
+    }
 ];
 
 interface WhyChooseUsItem {
