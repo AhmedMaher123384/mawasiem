@@ -98,11 +98,11 @@ function Contact() {
               0502116888
             </a>
             <a
-              href="tel:0563738927"
+              href="tel:0547493606"
               className="flex flex-col items-center justify-center p-6 bg-green-50 rounded-xl text-green-600 text-2xl font-medium hover:bg-green-100 transition-colors"
             >
               <Phone className="w-10 h-10 mb-2" />
-              0563738927
+              0547493606
             </a>
           </div>
         </div>
