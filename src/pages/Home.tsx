@@ -287,7 +287,7 @@ function Home() {
               heroLoaded ? 'opacity-100 transform-none' : 'opacity-0 -translate-y-10'
             }`}
           >
-شركة تقدم حلول راقية لنظافه الفلل و القصور و الفنادق و المولات 
+شركة مواسم تقدم حلول راقية لنظافه الفلل و القصور و الفنادق و المولات 
           </p>
           <div 
             className={`flex flex-wrap justify-center gap-4 transition-all duration-300 delay-200 ${
