@@ -119,9 +119,22 @@ const features: Feature[] = [
   }
   ,{
     icon: <Sparkles className="text-green-600 w-8 h-8" />,
-    title: 'حلول النظافة',
-    description: 'نهتم بالتفاصيل ونقدم حلولاً متكاملة تضمن نظافة مثالية لجميع المنشآت على اختلاف أنواعها'
+    title: 'حلول النظافة الراقية',
+    description: 'خدمات نظافة متقدمة تجمع بين الجودة، الاحترافية، وأحدث التقنيات لضمان بيئة نظيفة وصحية بأعلى المعايير'
   }
+   ,
+    {
+      icon: (
+        <svg className="w-8 h-8 text-green-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M9 12L11 14L15 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M7.5 5.5L4.5 8.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M16.5 5.5L19.5 8.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      ),
+      title: 'نهتم بالتفاصيل',
+      description: 'نولي كل تفصيل الاهتمام الكامل لضمان تقديم خدمة استثنائية ترضي أعلى التوقعات'
+    }
   ,
     {
       icon: <Shield className="text-green-600 w-8 h-8" />,
