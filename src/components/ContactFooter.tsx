@@ -59,17 +59,7 @@ const ContactSection = () => {
                   <span className="text-gray-700 hover:text-green-700 transition-colors text-sm">info@mawasims.com.sa</span>
                 </a>
                 
-                <a href="mailto:MBadran@mawasims.com.sa" 
-                   className="flex items-center justify-center space-x-1 space-x-reverse py-2 px-2 rounded-md hover:bg-green-50 transition-colors mb-1 border border-gray-100">
-                  <UserCheck className="w-4 h-4 text-green-600 ml-1.5" />
-                  <span className="text-gray-700 hover:text-green-700 transition-colors text-sm">MBadran@mawasims.com.sa</span>
-                </a>
-                
-                <a href="mailto:ZHesham@mawasims.com.sa" 
-                   className="flex items-center justify-center space-x-1 space-x-reverse py-2 px-2 rounded-md hover:bg-green-50 transition-colors border border-gray-100">
-                  <UserCheck className="w-4 h-4 text-green-600 ml-1.5" />
-                  <span className="text-gray-700 hover:text-green-700 transition-colors text-sm">ZHesham@mawasims.com.sa</span>
-                </a>
+          
               </div>
             </div>
           </div>
