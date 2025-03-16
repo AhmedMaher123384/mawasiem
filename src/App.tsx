@@ -12,9 +12,9 @@ import whatsappLogo from './assets/whatsapp-logo.png'; // صورة الواتس�
 function App() {
   // تحويل الرقم 0563995580 إلى الصيغة الدولية (+966563995580)
   const openWhatsApp = () => {
-    window.open('https://wa.me/966563995580', '_blank');
+    window.open('https://wa.me/966551665067', '_blank');
   };
-  
+  ‪‬
   return (
     <Router>
       <div className="relative min-h-screen bg-white">
